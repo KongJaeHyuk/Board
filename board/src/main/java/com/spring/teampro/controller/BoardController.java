@@ -494,7 +494,7 @@ public class BoardController {
 		System.out.println("답글쓰기 완료");
 	}
 
-	// 셀렉트 박스 아작스 처리
+	// left(field) select ajax
 	@RequestMapping(value = "/board/selectArticle.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody Map selectArticle(HttpServletRequest request, HttpServletResponse response,
 			@RequestBody BoardDTO boardDTO, Model model) {
@@ -565,7 +565,7 @@ public class BoardController {
 		return map;
 	}
 
-	// 셀렉트 박스 서치 아작스
+	// search ajax
 	@RequestMapping(value = "/board/searchArticle.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public @ResponseBody Map searchArticle(HttpServletRequest request, HttpServletResponse response,
 			@RequestBody BoardDTO boardDTO, Model model) {
@@ -632,7 +632,7 @@ public class BoardController {
 		return map;
 	}
 
-	// 셀렉트 박스 페이지 갯수 선택시 ajax 처리
+	// right(amount) select ajax
 	@RequestMapping(value = "/board/selectAmount.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody Map selectAmount(HttpServletRequest request, HttpServletResponse response,
 			@RequestBody BoardDTO boardDTO, Model model) {
