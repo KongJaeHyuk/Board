@@ -633,10 +633,6 @@ public class BoardController {
 	}
 
 	// 셀렉트 박스 페이지 갯수 선택시 ajax 처리
-	/*
-	 * 받아야 할 값 (보여줄 페이지(amount), searchBar, 분야) amount 변경시 컨트롤러로 왔다가 다시 view단으로
-	 */
-
 	@RequestMapping(value = "/board/selectAmount.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody Map selectAmount(HttpServletRequest request, HttpServletResponse response,
 			@RequestBody BoardDTO boardDTO, Model model) {
