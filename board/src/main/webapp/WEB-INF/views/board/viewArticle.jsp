@@ -69,15 +69,6 @@
 					obj.submit();
 				});
 			
-// 			// 대댓글 쓰기 버튼을 눌렀을때
-// 			$(".hide_show").off("click").on("click",function(){
-// 				 console.log("$(this) ::" , $(this));
-// 			btn_4.addEventListener("click", function() {
-// 				obj.action = "${contextPath}/board/replyForm.do";
-// 				obj.method = "GET";
-// 				obj.submit();
-// 			});
-// 			});
    			 
 			// 대댓글 쓰기 버튼을 눌렀을때
 			$(".hide_show").off("click").on("click",function(){

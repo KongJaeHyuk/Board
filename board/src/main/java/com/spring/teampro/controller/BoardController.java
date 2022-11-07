@@ -453,14 +453,10 @@ public class BoardController {
 			}
 		}
 		int b_field = Integer.parseInt(multipartRequest.getParameter("b_field"));
-		System.out.println("addReply의 b_field  = " + b_field);
 		String b_imageFile = upload(multipartRequest);
-		System.out.println("b_imageFile = " + b_imageFile);
 		int b_articleNo = Integer.parseInt(multipartRequest.getParameter("b_parentNo"));
-		System.out.println("addReply 의 b_articleNo " + b_articleNo);
 		session = multipartRequest.getSession();
 		SignUpInDTO userInfo = (SignUpInDTO) session.getAttribute("userInfo");
-//			model.addAttribute("userKey", userInfo.getUserKey());
 		map.put("b_parentNo", b_articleNo);
 		map.put("b_imageFile", b_imageFile);
 		map.put("userKey", userInfo.getUserKey());
