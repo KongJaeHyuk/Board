@@ -523,8 +523,6 @@ public class BoardController {
 		System.out.println("amount ---> " + amount);
 		// field 값 1 : 제목, 2: 내용, 3:글 작성자, 4: 전체 근데 굳이 if 안걸고 셋팅해도 노상관
 		boardDTO.setB_field2(field2);
-//					boardDTO.setPageNum(pageNum);
-//					boardDTO.setAmount(amount);
 		boardDTO.setTotalCount(totalCount2);
 		int totalCount = boardService.getSelectCount(boardDTO);
 		System.out.println("셀렉트 박스 아작스 totalCount --->" + totalCount);

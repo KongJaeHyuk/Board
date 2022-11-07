@@ -16,9 +16,6 @@
  href ="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
   <link rel="stylesheet"
  href ="${pageContext.request.contextPath }/resources/css/view.css">
-
-<style type="text/css">
-</style>
 </head>
 <body>
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -29,6 +26,7 @@
 			/*  목록으로 ~ */
 			let obj = document.querySelector("#frmForm");
 			console.log(obj);
+			
 			let btn = document.querySelector("#list_btn");
 				btn.addEventListener("click", function() {
 					obj.action = "${contextPath}/board/listArticles.do";
@@ -38,6 +36,7 @@
 
 			// 수정하기 버튼을 눌렀을때 수정페이지로 간다.
 			let btn_1 = document.querySelector("#edit_btn");
+				
 				btn_1.addEventListener("click",function() {
 					//수정할 수 있는 부분은 disabled를 풀어준다.
 					document.querySelector("#edit_title").disabled = false;
@@ -46,8 +45,10 @@
 					document.querySelector("#edit_btn").style.display = "none";					
 					document.querySelector("#imageFile").disabled = false;
 				});
+				
 			// 수정 버튼을 눌렀을때 updateArticle.do로 전달!!
 			let btn_2 = document.querySelector("#real_edit_btn");
+				
 				btn_2.addEventListener("click", function() {
 					obj.action = "${contextPath}/board/updateArticle.do";
 					obj.submit();
@@ -55,14 +56,16 @@
 
 			// 삭제 버튼을 눌렀을때 deleteArticle.do로 전달
 			let btn_3 = document.querySelector("#del_btn");
-				btn_3.addEventListener("click", function() {
-					obj.action = "${contextPath}/board/deleteArticle.do";
+				
+			btn_3.addEventListener("click", function() {
+						obj.action = "${contextPath}/board/deleteArticle.do";
 					obj.method = "GET";
 					obj.submit();
 				});
 
 			// 답글 버튼을 눌렀을때 replyForm.do로 전달
 			let btn_4 = document.querySelector("#rePly_btn");
+				
 				btn_4.addEventListener("click", function() {
 					obj.action = "${contextPath}/board/replyForm.do";
 					obj.method = "GET";
@@ -78,7 +81,6 @@
 				 $(this).parent().next().toggle();
 				});
     }
-			
     
 //     아작스
     $(function(){
@@ -263,45 +265,44 @@
 			});
 		})
 	}
-
 </script>
+	
 	<div class = "wrapp">
 	<div class = "container">
 		<h1 style = "margin-top : 30px; color : #353866">${view.nickName }님의 소중한 글입니다.</h1><hr>
 	<div class = "field">
 		<form name="frmName" id=frmForm action="${contextPath }" enctype="multipart/form-data" method="post"><br>
 			<div id = "articleNo">
-				<div class ="color_btn" style="float : left;  border-radius: 4px; background-color: white; width:100px; height:30px;" >
+				<div class ="color_btn" id = "art_no" >
 					글번호
 				</div> 
-				<input type="text" value="${view.b_articleNo }"  style ="background-color: #FEF5ED; float : left;  margin-left: 3px; border : 0; color :#353866;" disabled><br>
+				<input type="text" id = "inp_1" value="${view.b_articleNo }" disabled><br>
 			</div>
+				
 				<!-- 	히든으로 넘겨줄 정보	-->
 				<input type="hidden" name="b_parentNo" value="${view.b_parentNo }">
 				<input type="hidden" name="b_articleNo" value="${view.b_articleNo }">
 				<input type="hidden" name="b_writer" value="${view.nickName }">
 				<input type="hidden" name="b_field" value="${view.b_field }">
+			
 			<div id = "articlewriter" >
-				<div class="color_btn" style="float : left; border-radius: 4px; background-color: white; width:100px; height:30px;
-			 	line-height: 1.5;">
+				<div class="color_btn" id = "div_1" >
 					글 작성자
-			</div>
-				<input type="text" name="b_writer" value="${view.nickName }" 
-				style ="background-color: #FEF5ED; float : left; margin-left: 3px; border : 0; margin-bottom: 10px; color :#353866;" disabled> 
-				</div><br>
+				</div>
+				<input type="text" id = "inp_2" name="b_writer" value="${view.nickName }"  disabled> 
+			</div><br>
+			
 			<div id = "add">
-				<div class="color_btn" style="float : left;  border-radius: 4px; background-color : white; width:100px; height:30px;
-			 	line-height: 1.5;">
+				<div class="color_btn" id ="div_2" >
 					등 록 일 
 				</div>
-				<input type="text" value="<fmt:formatDate value="${view.b_writeDate }"/> "name="b_writeDate" class = "color_btn"
-				style ="background-color: #FEF5ED; float : left; margin-left: 3px; border : 0; margin-bottom: 10px; color :#353866;" disabled >
-				</div>
+				<input type="text" id ="inp_3" value="<fmt:formatDate value="${view.b_writeDate }"/>" name="b_writeDate" class = "color_btn" disabled >
+			</div>
 	
 			<div class="input-group flex-nowrap" >
 	  			<span class="color_btn input-group-text" id="addon-wrapping" style = "background-color: white;">제목</span>
 				<input type="text" class="form-control" id="edit_title" value="${view.b_title }" 
-				style = "background-color: #e1c1ec; width :700px; color :white; " name="b_title" aria-label="Username" aria-describedby="addon-wrapping" disabled>
+				name="b_title" aria-label="Username" aria-describedby="addon-wrapping" disabled>
 			</div><br>
 			
 			<textarea rows="10" cols="70" id="edit_content" name="b_content" 
@@ -322,93 +323,96 @@
 					onchange="readURL(this);" disabled />
 				</c:if>
 			</div><hr><br>
-			<!-- 댓글 추가 div -->
-	<div id = "wrap_comment">
-		<h2 style = "color:#353866">comment</h2>
-			<textarea rows="4" cols="70" name = "b_c_comment"id ="comment" placeholder = "댓글을 입력해 주세요!!!" style = "padding-top : 10px; padding-left : 5px;"></textarea>
-			<input type="button" id="add_comment" value="댓글쓰기" class ="color_btn btn btn-outline-light"  style = "float : right; margin-right : 5px;">
-		</div>
-			<br><br><hr>
-			<!-- 댓글이 들어갈 곳 -->
-			<h3 style = "color:#353866"> 댓글 입니다. </h3>
-		<div id = "view_comment">
-			<c:forEach var="comment" items="${comment }" varStatus="num">
-					<div>
-					<c:if test="${comment.b_key == view.b_key }">
-								 <c:choose>
-								<c:when test="${comment.level >1 }">
-									<%-- 부모글 기준으로 레벨 값 만큼 들여쓰기하자 --%>
-									<c:forEach begin="1" end="${comment.level }" step="1">
-										<span style='padding-left: 25px'></span>
-									</c:forEach>
-									<%-- 마지막으로 제목을 누르면 상세 출력 페이지 이동 a태그하나 --%>
-									<input type = "text" id = "view_re_com" class = "view_com" value = "[대댓글]&nbsp ${comment.b_c_comment }" readonly
-									 style='padding-right: 30px'>
-									 <div id = "comment_name" style ="float : left; margin-left : 55px; color : #353866; ">
-										작성자 : ${comment.nickName }	${comment.b_c_date }
-									</div>
-								</c:when>
-								<c:otherwise>
-									<input type = "text" id = "view_com" class = "view_com modify" value = "&nbsp ${comment.b_c_comment }" readonly>
-									 <div id = "comment_name" style ="float : left; margin-left : 20px; color : #353866;">
-										작성자 : ${comment.nickName }	${comment.b_c_date }
-										<input type = "button" class = "hide_show color_btn btn btn-outline-light" value = "대댓글쓰기"> 
-											<c:if test="${userInfo.userKey == comment.userKey}">
-												<input type = "button"  value = "댓글삭제" data-b_c_key = "${comment.b_c_key }" class ="delete_comment color_btn btn btn-outline-light"  style = "float : right; margin-right : 5px; ">
-												<input type="button" id="edit_comment" value="수정" data-edit_b_c_key = "${comment.b_c_key } " class ="edit_comment color_btn btn btn-outline-light"  style = "float : right; margin-right : 5px;">
-												<input type="button" id="real_edit_comment" value="댓글수정" data-real_edit_b_c_key = "${comment.b_c_key }" class ="real_edit_comment color_btn hidden btn btn-outline-light"  style = "float : right; margin-right : 5px; ">
-											</c:if>
-										<input type = "hidden" class = "b_c_key" name = "b_c_key" value = "${comment.b_c_key }"/>
-										<input type = "hidden" class = "b_c_commentno" name = "b_c_commentno" value = "${comment.b_c_commentno }"/>
-										<input type = "hidden" class = "b_key" name = "b_key" value = "${comment.b_key }"/>
-										<input type = "hidden" class = "userKey" name = "b_key" value = "${comment.userKey }"/>
-									</div>
-							<div class = "reply">
-								<input type = "text" id = "view_com" class = "re_com" placeholder="대댓글을 입력해주세요" >
-									<c:if test="${userInfo.userKey == comment.userKey}">
-										<!-- 대댓글 쓰기 창 -->
-										<input type = "button"  value = "대댓글" data-re_b_c_key = "${comment.b_c_key }" class ="re_comment color_btn btn btn-outline-light"  style = "float : right; margin-right : 5px; ">
-									</c:if>
-								<input type = "hidden" class = "b_c_key" name = "b_c_key" value = "${comment.b_c_key }"/>
-								<input type = "hidden" class = "b_c_commentno" name = "b_c_commentno" value = "${comment.b_c_commentno }"/>
-								<input type = "hidden" class = "b_key" name = "b_key" value = "${comment.b_key }"/>
-								<input type = "hidden" class = "userKey" name = "b_key" value = "${comment.userKey }"/>
-							</div>
-								</c:otherwise>
-							</c:choose>
-<%-- 						<input type = "text" id = "view_com" class = "view_com" value = "&nbsp ${comment.b_c_comment }" readonly> --%>
-							
-						</c:if>
+				<!-- 댓글 추가 div -->
+				<div id = "wrap_comment">
+					<h2 style = "color:#353866">comment</h2>
+						<textarea rows="4" cols="70" name = "b_c_comment"id ="comment" placeholder = "댓글을 입력해 주세요!!!" style = "padding-top : 10px; padding-left : 5px;"></textarea>
+						<input type="button" id="add_comment" value="댓글쓰기" class ="color_btn btn btn-outline-light"  style = "float : right; margin-right : 5px;">
 					</div>
-			</c:forEach>
-		</div>
+						<br><br><hr>
+						<!-- 댓글이 들어갈 곳 -->
+						<h3 style = "color:#353866"> 댓글 입니다. </h3>
+					<div id = "view_comment">
+						<c:forEach var="comment" items="${comment }" varStatus="num">
+								<div>
+								<c:if test="${comment.b_key == view.b_key }">
+									 <c:choose>
+										<c:when test="${comment.level >1 }">
+										
+										<%-- 부모글 기준으로 레벨 값 만큼 들여쓰기하자 --%>
+										<c:forEach begin="1" end="${comment.level }" step="1">
+											<span style='padding-left: 25px'></span>
+										</c:forEach>
+										
+										<%-- 마지막으로 제목을 누르면 상세 출력 페이지 이동 a태그하나 --%>
+										<input type = "text" id = "view_re_com" class = "view_com" value = "[대댓글]&nbsp ${comment.b_c_comment }" readonly
+										 style='padding-right: 30px'>
+										 <div id = "comment_name" style ="float : left; margㄴin-left : 55px; color : #353866; ">
+											작성자 : ${comment.nickName }	${comment.b_c_date }
+										</div>
+										</c:when>
+									<c:otherwise>
+										
+										<input type = "text" id = "view_com" class = "view_com modify" value = "&nbsp ${comment.b_c_comment }" readonly>
+										
+										 <div id = "comment_name" style ="float : left; margin-left : 20px; color : #353866;">
+											작성자 : ${comment.nickName }	${comment.b_c_date }
+											<input type = "button" class = "hide_show color_btn btn btn-outline-light" value = "대댓글쓰기"> 
+												<c:if test="${userInfo.userKey == comment.userKey}">
+													<input type = "button"  value = "댓글삭제" data-b_c_key = "${comment.b_c_key }" class ="delete_comment color_btn btn btn-outline-light"  style = "float : right; margin-right : 5px; ">
+													<input type="button" id="edit_comment" value="수정" data-edit_b_c_key = "${comment.b_c_key } " class ="edit_comment color_btn btn btn-outline-light"  style = "float : right; margin-right : 5px;">
+													<input type="button" id="real_edit_comment" value="댓글수정" data-real_edit_b_c_key = "${comment.b_c_key }" class ="real_edit_comment color_btn hidden btn btn-outline-light"  style = "float : right; margin-right : 5px; ">
+												</c:if>
+											<input type = "hidden" class = "b_c_key" name = "b_c_key" value = "${comment.b_c_key }"/>
+											<input type = "hidden" class = "b_c_commentno" name = "b_c_commentno" value = "${comment.b_c_commentno }"/>
+											<input type = "hidden" class = "b_key" name = "b_key" value = "${comment.b_key }"/>
+											<input type = "hidden" class = "userKey" name = "b_key" value = "${comment.userKey }"/>
+										</div>
+										
+										<div class = "reply">
+											<input type = "text" id = "view_com" class = "re_com" placeholder="대댓글을 입력해주세요" >
+												<c:if test="${userInfo.userKey == comment.userKey}">
+													<!-- 대댓글 쓰기 창 -->
+													<input type = "button"  value = "대댓글" data-re_b_c_key = "${comment.b_c_key }" class ="re_comment color_btn btn btn-outline-light"  style = "float : right; margin-right : 5px; ">
+												</c:if>
+											<input type = "hidden" class = "b_c_key" name = "b_c_key" value = "${comment.b_c_key }"/>
+											<input type = "hidden" class = "b_c_commentno" name = "b_c_commentno" value = "${comment.b_c_commentno }"/>
+											<input type = "hidden" class = "b_key" name = "b_key" value = "${comment.b_key }"/>
+											<input type = "hidden" class = "userKey" name = "b_key" value = "${comment.userKey }"/>
+										</div>
+											</c:otherwise>
+										</c:choose>
+									</c:if>
+								</div>
+						</c:forEach>
+					</div>
 				<!-- 히든으로 commentcontroller에 줄 값 -->
 				<input type ="hidden" name="b_key" id ="b_key" value= "${view.b_key }"/>
 				<input type ="hidden" name="userkey" id ="userkey" value = "${userInfo.userKey }"/><br><hr>
 		
-			<div id = "btn_list">
-				<input type="button" id="list_btn"  class="color_btn btn btn-outline-light" value="목록으로" style = "float : right; margin-right : 5px; ">
-					<c:choose>
-						<c:when test="${userInfo.userKey == view.userkey }">
-<!-- 						로그인 -->
-						<input type="button" id="edit_btn" value="수정하기" class ="color_btn btn btn-outline-light"  style = "float : right; margin-right : 5px;">
-						<input type="button" id="del_btn" value="삭제하기" class ="color_btn btn btn-outline-light"  style = "float : right; margin-right : 5px; "> 
-						<input type="button" id="rePly_btn" value="답글쓰기" class ="color_btn btn btn-outline-light"  style = "float : right; margin-right : 5px; ">
-						</c:when>
-						<c:when test ="${empty userInfo.userKey }">
-<!-- 						비로그인 -->
-						<input type="button" id="edit_btn" value="수정하기" class = "color_btn hidden btn btn-outline-light" >
-						<input type="button" id="del_btn" value="삭제하기" class = "color_btn hidden btn btn-outline-light"> 
-						<input type="button" id="rePly_btn" value="답글쓰기" class = "color_btn hidden btn btn-outline-light">
-						</c:when>
-						<c:when test ="${not empty userInfo.userKey }">
-						<input type="button" id="edit_btn" value="수정하기" class="color_btn hidden btn btn-outline-light" style = "float : right; margin-right : 5px;">
-						<input type="button" id="del_btn" value="삭제하기" class="color_btn hidden btn btn-outline-light" style = "float : right; margin-right : 5px;"> 
-						<input type="button" id="rePly_btn" class="color_btn btn btn-outline-light" value="답글쓰기"  style = "float : right; margin-right : 5px;">
-						</c:when>
-					</c:choose>
-			<input type="button" id="real_edit_btn" value="수정" class="btn btn-outline-danger">
-		</div>
+					<div id = "btn_list">
+						<input type="button" id="list_btn"  class="color_btn btn btn-outline-light" value="목록으로" style = "float : right; margin-right : 5px; ">
+							<c:choose>
+								<c:when test="${userInfo.userKey == view.userkey }">
+								<!-- 로그인 -->
+								<input type="button" id="edit_btn" value="수정하기" class ="color_btn btn btn-outline-light"  style = "float : right; margin-right : 5px;">
+								<input type="button" id="del_btn" value="삭제하기" class ="color_btn btn btn-outline-light"  style = "float : right; margin-right : 5px; "> 
+								<input type="button" id="rePly_btn" value="답글쓰기" class ="color_btn btn btn-outline-light"  style = "float : right; margin-right : 5px; ">
+								</c:when>
+								<c:when test ="${empty userInfo.userKey }">
+								<!-- 비로그인 -->
+								<input type="button" id="edit_btn" value="수정하기" class = "color_btn hidden btn btn-outline-light" >
+								<input type="button" id="del_btn" value="삭제하기" class = "color_btn hidden btn btn-outline-light"> 
+								<input type="button" id="rePly_btn" value="답글쓰기" class = "color_btn hidden btn btn-outline-light">
+								</c:when>
+								<c:when test ="${not empty userInfo.userKey }">
+								<input type="button" id="edit_btn" value="수정하기" class="color_btn hidden btn btn-outline-light" style = "float : right; margin-right : 5px;">
+								<input type="button" id="del_btn" value="삭제하기" class="color_btn hidden btn btn-outline-light" style = "float : right; margin-right : 5px;"> 
+								<input type="button" id="rePly_btn" class="color_btn btn btn-outline-light" value="답글쓰기"  style = "float : right; margin-right : 5px;">
+								</c:when>
+							</c:choose>
+					<input type="button" id="real_edit_btn" value="수정" class="btn btn-outline-danger">
+				</div>
 	</form>
 </div>
 </div>

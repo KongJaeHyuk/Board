@@ -100,3 +100,61 @@ body {
 .reply {
 	display : none;	
 }
+
+#art_no {
+	float : left; 
+	border-radius: 4px; 
+	background-color: white; 
+	width:100px;
+	height:30px;
+}
+#inp_1 {
+	background-color: #FEF5ED; 
+	float : left; 
+	margin-left: 3px; 
+	border : 0;
+	color :#353866;
+}
+
+#inp_2 {
+	background-color: #FEF5ED;
+	float : left;
+	margin-left: 3px;
+	border : 0;
+	margin-bottom: 10px;
+	color :#353866;
+}
+
+#inp_3 {
+	background-color: #FEF5ED;
+	float : left;
+	margin-left: 3px;
+	border : 0;
+	margin-bottom: 10px;
+	color :#353866;
+}
+
+#div_1 {
+	float : left;
+	border-radius: 4px;
+	background-color: white;
+	width:100px;
+	height:30px;
+	line-height: 1.5;
+}
+
+#div_2 {
+	float : left; 
+	border-radius: 4px;
+	background-color : white;
+	width:100px;
+	height:30px;
+	line-height: 1.5;
+}
+
+#edit_title {
+	background-color: #e1c1ec;
+	width :700px;
+	color :white; 
+}
+
