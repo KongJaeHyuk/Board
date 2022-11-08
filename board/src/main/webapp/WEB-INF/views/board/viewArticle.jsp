@@ -147,18 +147,18 @@
     	
  	// 대댓글 추가
   	function addReComment(){
-			 $(".re_comment").off("click").on("click", function(){
+			 $(".re_comment").off("click").on("click", function(e){
     			
-	    		let b_c_key =  $(this).attr("data-r_b_c_key");
+	    		 let b_c_key =  $(this).attr("data-r_b_c_key");
 
 	    		 let comment = $(this).parent().find(".re_com").val();
-				 console.log("comment===" , comment);
+				 console.log("comment :: " , comment);
     			 let b_key =  $(this).parent().find(".b_key").val();
-				 console.log("b_key===" , b_key);
+				 console.log("b_key :: " , b_key);
     			 let userKey =  $(this).parent().find(".userKey").val();
-				 console.log("userkey===" , userkey);
+				 console.log("userkey :: " , userkey);
     			 let b_c_commentno =  $(this).parent().find(".b_c_commentno").val();
-				 console.log("b_c_commentno===" , b_c_commentno);
+				 console.log("b_c_commentno ::" , b_c_commentno);
 				 
 			 let info = {
 					b_c_comment : comment,
@@ -173,7 +173,7 @@
 					contentType : "application/json",
 					data: JSON.stringify(info),
 					success: function(data){
-						console.log("list :", data);
+						console.log("data :: ", data);
 						alert("대댓글이 작성되었습니다.");
 						if(data.length > 0){
 	    					let html = "";
@@ -312,15 +312,13 @@
 			<%-- 이미지가 있을 경우 표시 --%>
 			<div id = "image" >
 				<c:if test="${not empty (view.b_imageFile) && view.b_imageFile != 'null'}">
-					image : 
+					파일 미리보기 : 
 				<%-- 이미지 수정에 대비해 지금 이미지 파일 이름을 저장 --%>
 				<input type="hidden" id="edit_image" name="oriFileName"
 					value="${view.b_imageFile }" />
 				<img style = "width : 200px ; height : 200px;" src="${contextPath }/board/download.do?b_imageFile=${view.b_imageFile }
 					&b_articleNo=${view.b_articleNo }" /><br>
 				<%-- 수정된 이미지 파일 이름 전송 --%>
-				<input type="file" name="b_imageFile" id="imageFile"
-					onchange="readURL(this);" disabled />
 				</c:if>
 			</div><hr><br>
 				<!-- 댓글 추가 div -->

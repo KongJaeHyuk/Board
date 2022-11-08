@@ -75,21 +75,24 @@ public class BoardController {
 			// 댓글 갯수 가져오기
 			List<CommentDTO> list = new ArrayList<CommentDTO>();
 			list = boardService.getComment();
-			CommentDTO commentDTO = new CommentDTO();
+			
+			// 페이징 처리
 			int totalCount = boardService.getPage();
 			PageDTO pageDTO = new PageDTO(pageNum, amount, totalCount);
 
 			// 공지글 조회 메소드
 			List<CommentDTO> noticeList = boardService.getNoticeList();
-			System.out.println("noticeList === " + noticeList);
+			System.out.println("noticeList ===> " + noticeList);
 
 			// 전체 리스트 가져오기
 			List<BoardDTO> articlesList = boardService.getListArticles(pageNum, amount);
-
+			
+			// 로그인 세션
 			session = request.getSession();
 			SignUpInDTO userInfo = (SignUpInDTO) session.getAttribute("userInfo");
 
 			for (int j = 0; j < list.size(); j++) {
+				CommentDTO commentDTO = new CommentDTO();
 				commentDTO = list.get(j);
 				for (int i = 0; i < articlesList.size(); i++) {
 					boardDTO = articlesList.get(i);
